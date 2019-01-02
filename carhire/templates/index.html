@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<!--div class="hero">
+hello
+</div-->
+<!--div class="main">
+    <h1 class="title">My Car Hire</h1>
+    <ul class="main-menu">
+        <li class="menu-list-item">
+            <a class="menu-link" href="" style="background-image:url({{ url_for('static', filename='bike.jpg') }}">
+                <h2>Bikes</h2>
+            </a>
+        </li>
+        <li class="menu-list-item">
+            <a class="menu-link" href="" style="background-image:url({{ url_for('static', filename='car.jpg') }}">
+                <h2>Cars</h2>
+            </a>
+        </li>
+        <li class="menu-list-item">
+            <a class="menu-link" href="" style="background-image:url({{ url_for('static', filename='van.jpg') }}">
+                <h2>Vans</h2>
+            </a>
+        </li>
+    </ul>
+</div-->
+
+
+<div class="index">
+
+    <div class="ls">
+        <h1 class="title">My Car Hire</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur facere iusto modi, quidem quo
+            ullam. Amet aut, autem cumque enim expedita iusto nemo nulla optio pariatur rerum soluta vitae.</p>
+    </div>
+
+    <div class="rs">
+        <ul class="main-menu">
+            <li class="menu-list-item">
+                <a class="menu-link" href="" style="background:url({{ url_for('static', filename='bike.jpg')}}) center;">
+                    <h2>Bikes</h2>
+                </a>
+            </li>
+            <li class="menu-list-item">
+                <a class="menu-link" href="" style="background:url({{ url_for('static', filename='car.jpg')}}) center;">
+                    <h2>Cars</h2>
+                </a>
+            </li>
+            <li class="menu-list-item">
+                <a class="menu-link" href="" style="background:url({{ url_for('static', filename='van.jpg')}}) center; ">
+                    <h2>Vans</h2>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}
