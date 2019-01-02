@@ -46,7 +46,7 @@ class VehicleFrame(tk.Frame):
     def set_title(self):
         title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600, foreground=vc.WHITE)
         title_label.configure(background=vc.BG, anchor="center")
-        title_label.grid(row=0, column=1, sticky=(tk.E + tk.W), pady=(80, 80))
+        title_label.grid(row=0, column=1, sticky=(tk.E + tk.W), pady=(30, 80))
 
     def create_vehicle_list_display(self):
         self.populate_vehicle_list()
