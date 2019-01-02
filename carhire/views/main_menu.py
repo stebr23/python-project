@@ -10,12 +10,8 @@ class MainMenu(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.parent = parent
-        self.name = tk.StringVar()
-        self.title_string = tk.StringVar()
-        self.title_string.set("My Car Hire")
         self.configure(background=vc.BG)
         self.set_title()
-
         self.create_view()
 
     def create_view(self):
@@ -58,6 +54,9 @@ class MainMenu(tk.Frame):
         car_button.grid(row=2, column=1, sticky=(tk.N + tk.E + tk.S + tk.W), pady=(20, 20))
 
     def set_title(self):
+        self.name = tk.StringVar()
+        self.title_string = tk.StringVar()
+        self.title_string.set("My Car Hire")
         title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600,
                                 foreground=vc.WHITE)
         title_label.configure(background=vc.BG, anchor="center")
