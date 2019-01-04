@@ -111,8 +111,7 @@ class VehicleFrame(tk.Frame):
             elif self.vehicle_type == vc.VANS:
                 self.vehicle = self.set_vehicle_as_van(vehicle)
 
-            vehicle_details = self.generate_vehicle_details_string(vehicle)  # TODO Add this to the vehicle object
-            # vehicle_details = self.vehicle.generate_vehicle_details_string()  # TODO Add this to the vehicle object
+            vehicle_details = self.vehicle.generate_vehicle_details_string()
             self.list_listbox.insert(tk.END, vehicle_details)
 
     def set_vehicle_as_van(self, vehicle):
@@ -131,18 +130,6 @@ class VehicleFrame(tk.Frame):
             return db_consts.BIKES_TABLE
         elif self.vehicle_type == vc.VANS:
             return db_consts.VANS_TABLE
-
-    def generate_vehicle_details_string(self, vehicle):
-        spaces_to_add = [20 - len(vehicle[1]), 15 - len(vehicle[2]), 10 - len(vehicle[4]), 10 - len(vehicle[-2])]
-        vehicle_details_string = "%s:  " % vehicle[0]
-        vehicle_details_string += vehicle[1] + self.add_number_of_spaces(spaces_to_add[0])
-        vehicle_details_string += vehicle[2] + self.add_number_of_spaces(spaces_to_add[1])
-        vehicle_details_string += vehicle[4] + self.add_number_of_spaces(spaces_to_add[2])
-        vehicle_details_string += vehicle[-2]
-        return vehicle_details_string
-
-    def add_number_of_spaces(self, spaces_to_add):
-        return ' ' * spaces_to_add
 
     def rent_selected(self):
         if self.list_listbox.curselection():
