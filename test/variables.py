@@ -18,6 +18,11 @@ passengers = 4
 
 
 def get_vehicle(_customer_id=''):
+    """
+
+    :param _customer_id:
+    :return:
+    """
     return Vehicle(
         vehicle_id,
         make,
@@ -41,6 +46,10 @@ surname = "Brayson"
 
 
 def get_user():
+    """
+
+    :return:
+    """
     return User(
         user_id,
         username,
@@ -51,6 +60,11 @@ def get_user():
 
 
 def get_customer(_vehicle_id=''):
+    """
+
+    :param _vehicle_id:
+    :return:
+    """
     addr = get_address(user_id)
     bank = get_bank_details(user_id)
     cust = Customer(user_id, username, password, forename, surname, addr, bank, _vehicle_id)
@@ -58,6 +72,11 @@ def get_customer(_vehicle_id=''):
 
 
 def get_address(_user_id):
+    """
+
+    :param _user_id:
+    :return:
+    """
     return Address(
         _user_id,
         "My Address 1",
@@ -69,6 +88,11 @@ def get_address(_user_id):
 
 
 def get_bank_details(_user_id):
+    """
+
+    :param _user_id:
+    :return:
+    """
     return BankDetails(
         _user_id,
         "My Bank",
@@ -84,11 +108,21 @@ empty_catalogue = []
 
 
 def get_populated_catalogue(size=5):
+    """
+
+    :param size:
+    :return:
+    """
     catalogue = get_list_of_vehicles(size)
     return Catalogue(catalogue)
 
 
 def get_list_of_vehicles(size):
+    """
+
+    :param size:
+    :return:
+    """
     catalogue = []
     for i in range(size):
         catalogue.append(get_vehicle())

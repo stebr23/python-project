@@ -1,15 +1,6 @@
+""" Car Hire App entry point
 
-
-# from flask import Flask, render_template
-#
-# app = Flask(__name__)
-# _debug = True
-#
-# @app.route('/')
-# def index():
-#     return render_template("index.html")
-#
-#
+"""
 from carhire.database import create_db
 from carhire.views.root_view import RootView
 

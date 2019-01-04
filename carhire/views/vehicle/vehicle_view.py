@@ -1,6 +1,6 @@
 import sqlite3
 import tkinter as tk
-import carhire.views.view_constants as vc
+import carhire.constants as vc
 import carhire.database as db_consts
 
 from tkinter import ttk
@@ -13,7 +13,13 @@ from carhire.static import HOME_ICON
 
 
 class VehicleFrame(tk.Frame):
+    """
+    Creates the frame holding the information of the Vehicles in
+    a catalogue
 
+    The user can select from a list of vehicles and rent them by
+    assigning them a user id
+    """
     def __init__(self, parent, vehicle_type, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
 
@@ -37,18 +43,28 @@ class VehicleFrame(tk.Frame):
         print("VehicleView:  READY")
 
     def create_main_display(self):
+        """
+        Contains the functions that create the widgets for the frame
+        """
         print("VehicleView:  Creating main vehicle view display")
         self.configure_root_frame()
         self.set_title()
         self.set_main_menu_button()
 
     def configure_root_frame(self):
+        """
+        Configures the root frame
+        """
         print("VehicleView:  Configuring root frame")
         self.parent.title("Car Hire - %s" % self.vehicle_type)
         self.configure(background=vc.BG)
         self.columnconfigure(1, weight=1)
 
     def set_main_menu_button(self):
+        """
+        Creates a button widget for the user to navigate back to the
+        main menu
+        """
         print("VehicleView:  Setting main menu button")
         main_menu_image = tk.PhotoImage(file=HOME_ICON)
         main_menu_button = tk.Button(self, text="   ", bd=0, cursor="hand2", command=self.change_to_main_menu,
@@ -57,6 +73,9 @@ class VehicleFrame(tk.Frame):
         main_menu_button.grid(row=0, column=0, sticky=(tk.E + tk.W))
 
     def set_title(self):
+        """
+        Sets the title of the frame so the user knows which frame they are viewing
+        """
         print("VehicleView:  Setting title")
         title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600,
                                 foreground=vc.WHITE)
@@ -64,11 +83,21 @@ class VehicleFrame(tk.Frame):
         title_label.grid(row=0, column=1, sticky=(tk.E + tk.W), pady=(30, 80))
 
     def create_vehicle_list_display(self):
+        """
+        Contains the functions used to create the list of vehicles
+        for the user to interact with
+        """
         print("VehicleView:  Creating vehicle list display")
         self.populate_catalogue()
         self.create_vehicle_list_frame()
 
     def populate_catalogue(self):
+        """
+        Populates the Catalogue object with vehicles from the database
+
+        The types of vehicles (Car, Bike or Van) are determined by the
+        option the user chose form the main menu
+        """
         print("VehicleView:  Populating catalogue")
         db_table_name = self.set_db_table_name()
         conn = sqlite3.connect(db_consts.DB_NAME)
@@ -85,6 +114,14 @@ class VehicleFrame(tk.Frame):
         self.catalogue = Catalogue(self.vehicle_list)
 
     def get_select_query(self, db_table_name):
+        """
+        Returns a relevant SELECT query depending on whether the user
+        is viewing the vehicles that are available to rent or those
+        are currently being rented
+
+        :param db_table_name: String of the name of the db table to query
+        :return: String of the whole SQL statement to retrieve the vehiclesfrom the db
+        """
         if self.parent.frame_name == vc.FRAME_VEHICLE:
             return 'SELECT * FROM %s WHERE user_id IS NULL' % db_table_name
         elif self.parent.frame_name == vc.FRAME_RENTED:
@@ -92,6 +129,9 @@ class VehicleFrame(tk.Frame):
         return ''
 
     def create_vehicle_list_frame(self):
+        """
+
+        """
         print("VehicleView:  Creating vehicle list frame")
         self.set_up_list_widgets()
         self.add_vehicles_from_catalogue_to_listbox()
@@ -101,12 +141,18 @@ class VehicleFrame(tk.Frame):
         self.set_change_view_button()
 
     def pack_list_widgets(self):
+        """
+
+        """
         print("VehicleView:  Packing widgets")
         self.list_listbox.pack()
         self.scrollbar.config(command=self.list_listbox.yview)
         self.list_frame.grid(row=1, column=1)
 
     def set_up_list_widgets(self):
+        """
+
+        """
         print("VehicleView:  Setting up list widgets")
         self.list_frame = tk.Frame(self, bd=2, relief=tk.SUNKEN, width=800, height=300)
         self.list_frame.pack_propagate(False)
@@ -117,6 +163,9 @@ class VehicleFrame(tk.Frame):
         self.list_listbox.pack_propagate(False)
 
     def create_rent_button_and_customer_input(self):
+        """
+
+        """
         print("VehicleView:  Creating rent buttons and customer input field")
         customer_id_field_label = tk.Label(self, text="Enter a customer id:", fg=vc.FG, bg=vc.BG)
         customer_id_field_label.grid(row=2, column=1, pady=(10, 0))
@@ -127,6 +176,9 @@ class VehicleFrame(tk.Frame):
         rent_button.grid(row=4, column=1, pady=(10, 0))
 
     def set_change_view_button(self):
+        """
+
+        """
         print("VehicleView:  current frame_name is: %s" % self.parent.frame_name)
         if self.parent.frame_name == vc.FRAME_VEHICLE:
             currently_rented_button = tk.Button(self, text="View Currently Rented %s" % self.vehicle_type,
@@ -138,6 +190,9 @@ class VehicleFrame(tk.Frame):
             currently_rented_button.grid(row=5, column=1, pady=(10, 0))
 
     def add_vehicles_from_catalogue_to_listbox(self):
+        """
+
+        """
         print("VehicleView:  Adding vehicles from catalogue to listbox")
         print("VehicleView:  Setting Vehicle object to specific vehicle type (Car||Van||Bike)")
         for vehicle in self.catalogue.get_entries():
@@ -153,20 +208,39 @@ class VehicleFrame(tk.Frame):
 
     @staticmethod
     def set_vehicle_as_van(vehicle):
+        """
+
+        :param vehicle:
+        :return:
+        """
         return Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
                    vehicle[8])
 
     @staticmethod
     def set_vehicle_as_bike(vehicle):
+        """
+
+        :param vehicle:
+        :return:
+        """
         return Bike(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
                     vehicle[8])
 
     @staticmethod
     def set_vehicle_as_car(vehicle):
+        """
+
+        :param vehicle:
+        :return:
+        """
         return Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
                    vehicle[8], vehicle[9])
 
     def set_db_table_name(self):
+        """
+
+        :return:
+        """
         print("VehicleView:  Setting db table name depending on vehicle type")
         if self.vehicle_type == vc.CARS:
             return db_consts.CARS_TABLE
@@ -176,6 +250,9 @@ class VehicleFrame(tk.Frame):
             return db_consts.VANS_TABLE
 
     def rent_selected(self):
+        """
+
+        """
         print("VehicleView:  Renting selected vehicle...")
         if self.list_listbox.curselection():
             vehicle_index = self.list_listbox.curselection()[0]
@@ -191,6 +268,11 @@ class VehicleFrame(tk.Frame):
                 self.customer_id.set('')
 
     def update_db_vehicle_table(self, vehicle_id, customer_id):
+        """
+
+        :param vehicle_id:
+        :param customer_id:
+        """
         print("VehicleView:  Updating db vehicle table with vehicle id: %s and customer_id: %s" % (
             vehicle_id, customer_id))
         db_table_name = self.set_db_table_name()
@@ -203,6 +285,11 @@ class VehicleFrame(tk.Frame):
 
     @staticmethod
     def get_customer(customer_id):
+        """
+
+        :param customer_id:
+        :return:
+        """
         print("VehicleView:  Getting customer")
         # TODO Update with Customer from db
         addr = Address(customer_id, "My Address 1", "My Address 2", "My City", "My County", "My Post Code")
@@ -211,15 +298,24 @@ class VehicleFrame(tk.Frame):
         return cust
 
     def change_to_main_menu(self):
+        """
+
+        """
         print("VehicleView:  Navigating to Main Menu")
         self.parent.set_frame(vc.FRAME_MAIN)
 
     def show_rented(self):
+        """
+
+        """
         print("Showing Rented")
         self.vehicle_list = []
         self.parent.set_frame(vc.FRAME_RENTED, self.vehicle_type)
 
     def show_available(self):
+        """
+
+        """
         print("Showing Available")
         self.vehicle_list = []
         self.parent.set_frame(vc.FRAME_VEHICLE, self.vehicle_type)
