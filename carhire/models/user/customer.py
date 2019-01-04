@@ -5,7 +5,7 @@ from carhire.models.user.user import User
 class Customer(User):
 
     def __init__(self, user_id, username, password, forename, surname, address, bank_details, vehicle_id=''):
-        super().__init__(self, user_id, username, password, forename, surname)
+        User.__init__(self, user_id, username, password, forename, surname)
         self.type = USER_TYPE_CUSTOMER
         self.address = address
         self.bank_details = bank_details

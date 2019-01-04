@@ -15,7 +15,7 @@ class TestCatalogue(unittest.TestCase):
 
     def test_rent_from_catalogue_removes_vehicle(self):
         vehicle = tv.get_vehicle()
-        customer = tv.get_customer()
+        customer = tv.get_customer(tv.vehicle_id)
         catalogue = Catalogue([vehicle])
 
         self.assertEqual(1, catalogue.get_size())

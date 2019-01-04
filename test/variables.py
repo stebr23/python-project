@@ -51,16 +51,10 @@ def get_user():
 
 
 def get_customer(_vehicle_id=''):
-    return Customer(
-        user_id,
-        username,
-        password,
-        forename,
-        surname,
-        get_address(user_id),
-        get_bank_details(user_id),
-        _vehicle_id
-    )
+    addr = get_address(user_id)
+    bank = get_bank_details(user_id)
+    cust = Customer(user_id, username, password, forename, surname, addr, bank, _vehicle_id)
+    return cust
 
 
 def get_address(_user_id):
