@@ -130,7 +130,8 @@ class VehicleFrame(tk.Frame):
 
     def create_vehicle_list_frame(self):
         """
-
+        Contains the functions executed to produce the frame containing the list of vehicles and associated
+        buttons
         """
         print("VehicleView:  Creating vehicle list frame")
         self.set_up_list_widgets()
@@ -142,7 +143,7 @@ class VehicleFrame(tk.Frame):
 
     def pack_list_widgets(self):
         """
-
+        Packs the widgets to the vehicle list frame
         """
         print("VehicleView:  Packing widgets")
         self.list_listbox.pack()
@@ -151,7 +152,7 @@ class VehicleFrame(tk.Frame):
 
     def set_up_list_widgets(self):
         """
-
+        Instantiates the widgets for the vehicle list frame and packs them to the frame
         """
         print("VehicleView:  Setting up list widgets")
         self.list_frame = tk.Frame(self, bd=2, relief=tk.SUNKEN, width=800, height=300)
@@ -164,7 +165,7 @@ class VehicleFrame(tk.Frame):
 
     def create_rent_button_and_customer_input(self):
         """
-
+        Creates the widgets to insert a customer id and rent a vehicle out to them
         """
         print("VehicleView:  Creating rent buttons and customer input field")
         customer_id_field_label = tk.Label(self, text="Enter a customer id:", fg=vc.FG, bg=vc.BG)
@@ -177,7 +178,8 @@ class VehicleFrame(tk.Frame):
 
     def set_change_view_button(self):
         """
-
+        Create the button to reload the frame showing the vehicles that are
+        currently available or that are rented out and place it in the frame
         """
         print("VehicleView:  current frame_name is: %s" % self.parent.frame_name)
         if self.parent.frame_name == vc.FRAME_VEHICLE:
@@ -191,7 +193,10 @@ class VehicleFrame(tk.Frame):
 
     def add_vehicles_from_catalogue_to_listbox(self):
         """
+        Creates relevant Vehicle objects (Car || Bike || Van) from the data in the database tables
+        and displays the data in the listbox widget.
 
+        The function calls the Vehicle's generate details function to populate the listbox
         """
         print("VehicleView:  Adding vehicles from catalogue to listbox")
         print("VehicleView:  Setting Vehicle object to specific vehicle type (Car||Van||Bike)")
@@ -209,37 +214,42 @@ class VehicleFrame(tk.Frame):
     @staticmethod
     def set_vehicle_as_van(vehicle):
         """
+        Takes data from the database table and returns a Van object
 
-        :param vehicle:
-        :return:
+        :param vehicle: Tuple containing an individual vehicle's data
+        :return: Van object with the stored data
         """
-        return Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
-                   vehicle[8])
+        return Van(vehicle_id=vehicle[0], make=vehicle[1], model=vehicle[2], wheels=vehicle[3], colour=vehicle[4],
+                   doors=vehicle[5], passengers=vehicle[6], user_id=vehicle[7], storage_space=vehicle[8])
 
     @staticmethod
     def set_vehicle_as_bike(vehicle):
         """
+        Takes data from the database table and returns a Bike object
 
-        :param vehicle:
-        :return:
+        :param vehicle: Tuple containing an individual vehicle's data
+        :return: Bike object with the stored data
         """
-        return Bike(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
-                    vehicle[8])
+        return Bike(vehicle_id=vehicle[0], make=vehicle[1], model=vehicle[2], wheels=vehicle[3], colour=vehicle[4],
+                    doors=vehicle[5], passengers=vehicle[6], user_id=vehicle[7], storage=vehicle[8])
 
     @staticmethod
     def set_vehicle_as_car(vehicle):
         """
+        Takes data from the database table and returns a Car object
 
-        :param vehicle:
-        :return:
+        :param vehicle: Tuple containing an individual vehicle's data
+        :return: Car object with the stored data
         """
-        return Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7],
-                   vehicle[8], vehicle[9])
+        return Car(vehicle_id=vehicle[0], make=vehicle[1], model=vehicle[2], wheels=vehicle[3], colour=vehicle[4],
+                   doors=vehicle[5], passengers=vehicle[6], user_id=vehicle[7], bags=vehicle[8], car_type=vehicle[9])
 
     def set_db_table_name(self):
         """
+        Sets the database table name to use as part of the SQL query
 
-        :return:
+        It is determined by the vehicle type provided when the frame initially loads
+        :return: String of the database table for the selected vehicle type
         """
         print("VehicleView:  Setting db table name depending on vehicle type")
         if self.vehicle_type == vc.CARS:
@@ -251,7 +261,12 @@ class VehicleFrame(tk.Frame):
 
     def rent_selected(self):
         """
+        Takes the selected vehicle and assigns a user_id to it
 
+        The vehicle is removed from the catalogue and the listbox
+
+        The database is updated to include the user id on the specific vehicle
+        table for the selected vehicle
         """
         print("VehicleView:  Renting selected vehicle...")
         if self.list_listbox.curselection():
@@ -269,9 +284,10 @@ class VehicleFrame(tk.Frame):
 
     def update_db_vehicle_table(self, vehicle_id, customer_id):
         """
+        Updates the database table to include the customer id on the vehicle record
 
-        :param vehicle_id:
-        :param customer_id:
+        :param vehicle_id: String of the vehicle record id
+        :param customer_id: String of the customer record id
         """
         print("VehicleView:  Updating db vehicle table with vehicle id: %s and customer_id: %s" % (
             vehicle_id, customer_id))
@@ -286,9 +302,13 @@ class VehicleFrame(tk.Frame):
     @staticmethod
     def get_customer(customer_id):
         """
+        Returns a customer object to be used by the catalogue object when assigning a vehicle to rent
 
-        :param customer_id:
-        :return:
+        TODO:
+          - Retrieve Customer from the DB table once this is set up
+
+        :param customer_id: String of the customer_id of the customer to return
+        :return: Customer object
         """
         print("VehicleView:  Getting customer")
         # TODO Update with Customer from db
@@ -299,14 +319,14 @@ class VehicleFrame(tk.Frame):
 
     def change_to_main_menu(self):
         """
-
+        Change the frame back to the main menu
         """
         print("VehicleView:  Navigating to Main Menu")
         self.parent.set_frame(vc.FRAME_MAIN)
 
     def show_rented(self):
         """
-
+        Change the frame to display the vehicles currently being rented
         """
         print("Showing Rented")
         self.vehicle_list = []
@@ -314,7 +334,7 @@ class VehicleFrame(tk.Frame):
 
     def show_available(self):
         """
-
+        Change the frame to display the vehicles available to rent
         """
         print("Showing Available")
         self.vehicle_list = []
