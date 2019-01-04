@@ -4,6 +4,13 @@ import carhire.views.view_constants as vc
 import carhire.database as db_consts
 
 from tkinter import ttk
+
+from carhire.models.catalogue.catalogue import Catalogue
+from carhire.models.user.user import User
+from carhire.models.vehicle.bike import Bike
+from carhire.models.vehicle.car import Car
+from carhire.models.vehicle.van import Van
+from carhire.models.vehicle.vehicle import Vehicle
 from carhire.static import HOME_ICON
 
 
@@ -23,6 +30,9 @@ class VehicleFrame(tk.Frame):
         self.list_frame = tk.Frame()
         self.list_listbox = tk.Listbox()
         self.scrollbar = tk.Scrollbar()
+        self.catalogue = ''
+        self.vehicle = ''
+        self.user = ''
 
         self.create_main_display()
         self.create_vehicle_list_display()
@@ -94,8 +104,25 @@ class VehicleFrame(tk.Frame):
 
     def add_vehicles_from_db_to_list(self):
         for vehicle in self._vehicle_list:
-            vehicle_details = self.generate_vehicle_details_string(vehicle)
+            if self.vehicle_type == vc.CARS:
+                self.vehicle = self.set_vehicle_as_car(vehicle)
+            elif self.vehicle_type == vc.BIKES:
+                self.vehicle = self.set_vehicle_as_bike(vehicle)
+            elif self.vehicle_type == vc.VANS:
+                self.vehicle = self.set_vehicle_as_van(vehicle)
+
+            vehicle_details = self.generate_vehicle_details_string(vehicle)  # TODO Add this to the vehicle object
+            # vehicle_details = self.vehicle.generate_vehicle_details_string()  # TODO Add this to the vehicle object
             self.list_listbox.insert(tk.END, vehicle_details)
+
+    def set_vehicle_as_van(self, vehicle):
+        return Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7], vehicle[8], vehicle[9])
+
+    def set_vehicle_as_bike(self, vehicle):
+        return Bike(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7], vehicle[8], vehicle[9])
+
+    def set_vehicle_as_car(self, vehicle):
+        return Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6], vehicle[7], vehicle[8], vehicle[9])
 
     def set_db_table_name(self):
         if self.vehicle_type == vc.CARS:
