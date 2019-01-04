@@ -13,19 +13,25 @@ class RootView(tk.Tk):
         self.resizable(width=False, height=False)
         self.state('zoomed')
         self.configure(background=vc.BG)
-        self.currentFrame = MainMenu(self)
-        self.set_frame(self.currentFrame)
+        self.frame_name = vc.FRAME_MAIN
+        self.current_frame = MainMenu(self)
+        self.set_frame(self.frame_name)
         self.columnconfigure(0, weight=1)
 
     def set_frame(self, frame_name, vehicle_type=''):
-        self.currentFrame.grid_forget()
+        self.current_frame.grid_forget()
 
         if frame_name == vc.FRAME_MAIN:
-            self.currentFrame = MainMenu(self)
+            self.frame_name = vc.FRAME_MAIN
+            self.current_frame = MainMenu(self)
         if frame_name == vc.FRAME_VEHICLE:
-            self.currentFrame = VehicleFrame(self, vehicle_type)
+            self.frame_name = vc.FRAME_VEHICLE
+            self.current_frame = VehicleFrame(self, vehicle_type)
+        if frame_name == vc.FRAME_RENTED:
+            self.frame_name = vc.FRAME_RENTED
+            self.current_frame = VehicleFrame(self, vehicle_type)
 
-        self.currentFrame.grid(sticky=(tk.E + tk.W + tk.N + tk.S))
+        self.current_frame.grid(sticky=(tk.E + tk.W + tk.N + tk.S))
 
     def get_frame(self):
-        return self.currentFrame
+        return self.current_frame

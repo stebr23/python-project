@@ -1,6 +1,6 @@
-'''
+"""
 Colours
-'''
+"""
 WHITE = '#FEFEFE'
 BLACK = '#333'
 RED = '#F44336'
@@ -42,6 +42,7 @@ Frame Names
 '''
 FRAME_MAIN = 'main'
 FRAME_VEHICLE = 'vehicle'
+FRAME_RENTED = 'rented'
 
 '''
 Vehicle Strings
