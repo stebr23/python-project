@@ -3,7 +3,6 @@ Car Hire App entry point
 """
 from carhire.database import create_db
 import carhire.views.root_view
-import carhire.services as services
 import carhire.constants as app_const
 from carhire.services.view_controller import ViewController
 

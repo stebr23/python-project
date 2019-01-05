@@ -70,3 +70,24 @@ class ViewController:
         """
         services.log_service.trace("ViewController", "Getting available %s catalogue" % vehicle_type)
         return services.catalogue_service.get_catalogue_rented(vehicle_type)
+
+    @staticmethod
+    def rent_vehicle(vehicle_type, vehicle_id, user_id):
+        """
+        Assigns the vehicle a user_id and assigns a customer a vehicle_id
+        :param vehicle_type: vehicle_type: String of the type of vehicle to return
+        :param vehicle_id: String of the vehicle's ID
+        :param user_id: String of the customer's ID
+        """
+        services.log_service.trace("ViewController", "Renting vehicle with type: %s, vehicle_id: %s, and user_id: %s" % (vehicle_type, vehicle_id, user_id))
+        services.rental_service.rent_vehicle(vehicle_type, vehicle_id, user_id)
+
+    @staticmethod
+    def return_vehicle(vehicle_type, vehicle_id):
+        """
+        Removes the vehicle_id from the user and removes the customer_id from the vehicle
+        :param vehicle_type: vehicle_type: String of the type of vehicle to return
+        :param vehicle_id: String of the vehicle's ID
+        """
+        services.log_service.trace("ViewController", "Renting vehicle with type: %s, vehicle_id: %s" % (vehicle_type, vehicle_id))
+        services.rental_service.return_vehicle(vehicle_type, vehicle_id)

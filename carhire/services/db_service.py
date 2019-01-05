@@ -39,6 +39,44 @@ class DBService:
         self.close_db_connection()
         return records
 
+    def execute_update(self, table_name, values, condition):
+        """
+        Executes a select query on the specified db table and returns
+        the results as a list
+
+        :param table_name: String of the name of the db table
+        :param values: String of the values, e.g. "foo='bar'" or multiple columns "foo1='bar1', foo2='bar2', foo3='bar3'"
+        :param condition: String of the condition to appear in the WHERE statement, e.g. user_id='123'
+        """
+        services.log_service.trace("DB_SERVICE",
+                                   "Executing UPDATE statement: table_name(%s), values(%s), condition(%s)" % (
+                                    table_name, values, condition))
+        self.create_db_connection()
+
+        update_query = self.generate_update_query_from_arguments(table_name, values, condition)
+        services.log_service.debug("DB_SERVICE", "UPDATE query: %s" % update_query)
+        self._cursor.execute(update_query)
+
+        self.commit_changes()
+        self.close_db_connection()
+
+    @staticmethod
+    def generate_update_query_from_arguments(table_name, values, condition):
+        """
+        Produces an UPDATE query string to be executed using the arguments provided
+
+        :param table_name: String of the name of the db table
+        :param values: String of the values, e.g. "foo='bar'" or multiple columns "foo1='bar1', foo2='bar2', foo3='bar3'"
+        :param condition: String of the condition to appear in the WHERE statement, e.g. user_id='123'
+        :return: String of the complete UPDATE statement
+        """
+        services.log_service.debug("DB_SERVICE", "Generating UPDATE statement")
+        update_query = "UPDATE %s" % table_name
+        set_query = " SET %s" % values
+        where_query = " WHERE %s" % condition
+        return update_query + set_query + where_query
+
+
     @staticmethod
     def generate_select_query_from_arguments(columns, table_name, condition):
         """

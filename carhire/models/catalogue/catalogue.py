@@ -17,6 +17,10 @@ class Catalogue:
         self.vehicle_list = vehicles_list
 
     def get_list(self):
+        """
+        Returns vehicle list
+        :return: vehicle list
+        """
         return self.vehicle_list
 
     def get_vehicle_by_id(self, vehicle_id):

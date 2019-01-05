@@ -1,7 +1,6 @@
 import tkinter as tk
 import carhire.constants as vc
 import carhire.services as services
-
 from tkinter import ttk
 from carhire.static import *
 

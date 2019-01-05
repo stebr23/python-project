@@ -1,4 +1,3 @@
-import sqlite3
 import tkinter as tk
 import carhire.constants as vc
 import carhire.database as db_consts
@@ -6,9 +5,6 @@ import carhire.services as services
 
 from tkinter import ttk
 from carhire.models.user.customer import Customer, Address, BankDetails
-from carhire.models.vehicle.bike import Bike
-from carhire.models.vehicle.car import Car
-from carhire.models.vehicle.van import Van
 from carhire.static import HOME_ICON
 
 
@@ -150,6 +146,28 @@ class VehicleFrame(tk.Frame):
                                                 command=self.show_available)
             currently_rented_button.grid(row=5, column=1, pady=(10, 0))
 
+    def add_vehicles_from_catalogue_to_listbox(self):
+        """
+        Creates relevant Vehicle objects (Car || Bike || Van) from the data in the database tables
+        and displays the data in the listbox widget.
+
+        The function calls the Vehicle's generate details function to populate the listbox
+        """
+        services.log_service.trace("VehicleView", "Adding vehicles from catalogue to listbox")
+        services.log_service.trace("VehicleView", "Setting Vehicle object to specific vehicle type (Car||Van||Bike)")
+
+        for vehicle in self.catalogue.get_list():
+            services.log_service.debug("VehicleView", "Vehicle: %s" % vehicle[0])
+            if self.vehicle_type == vc.CARS:
+                self.vehicle = self.catalogue.return_car(vehicle)
+            elif self.vehicle_type == vc.BIKES:
+                self.vehicle = self.catalogue.return_bike(vehicle)
+            elif self.vehicle_type == vc.VANS:
+                self.vehicle = self.catalogue.return_van(vehicle)
+
+            vehicle_details = self.vehicle.generate_vehicle_details_string()
+            self.list_listbox.insert(tk.END, vehicle_details)
+
     def pack_list_widgets(self):
         """
         Packs the widgets to the vehicle list frame
@@ -197,37 +215,18 @@ class VehicleFrame(tk.Frame):
         table for the selected vehicle
         """
         services.log_service.trace("VehicleView", "Renting selected vehicle...")
-        # ADD RENTAL SERVICE STUFF
 
         if self.list_listbox.curselection():
             vehicle_index = self.list_listbox.curselection()[0]
-            vehicle_to_rent = self.catalogue.get_vehicle(vehicle_index)
+            vehicle_to_rent = self.list_listbox.get(vehicle_index)
+            vehicle_id = vehicle_to_rent[0:4]
+            services.log_service.debug("VehicleView", "vehicle: %s" % vehicle_id)
             customer_id = self.customer_id.get()
 
             if customer_id != '':
-                customer = self.get_customer(customer_id)
-                self.update_db_vehicle_table(vehicle_to_rent.vehicle_id, customer.user_id)
+                self.view_controller.rent_vehicle(self.vehicle_type, vehicle_id, self.customer_id.get())
                 self.list_listbox.delete(vehicle_index)
-                self.catalogue.rent_vehicle(vehicle_to_rent, customer)
-                self.vehicle_list.pop(vehicle_index)
                 self.customer_id.set('')
-
-    def update_db_vehicle_table(self, vehicle_id, customer_id):
-        """
-        Updates the database table to include the customer id on the vehicle record
-
-        :param vehicle_id: String of the vehicle record id
-        :param customer_id: String of the customer record id
-        """
-        services.log_service.trace("VehicleView", "Updating db vehicle table with vehicle id: %s and customer_id: %s" % (
-            vehicle_id, customer_id))
-        db_table_name = self.set_db_table_name()
-        conn = sqlite3.connect(db_consts.DB_NAME)
-        c = conn.cursor()
-        c.execute('UPDATE %s SET user_id = \'%s\' WHERE vehicle_id = %s' % (db_table_name, customer_id, vehicle_id))
-        c.close()
-        conn.commit()
-        conn.close()
 
     @staticmethod
     def get_customer(customer_id):
@@ -241,7 +240,7 @@ class VehicleFrame(tk.Frame):
         :return: Customer object
         """
         services.log_service.trace("VehicleView", "Getting customer")
-        # TODO Update with Customer from db
+        # TODO Update with Customer from view_controller
         addr = Address(customer_id, "My Address 1", "My Address 2", "My City", "My County", "My Post Code")
         bank = BankDetails(customer_id, "My Bank", "00-00-00", "12345678")
         cust = Customer(customer_id, "usr", "pass", "Forename", "Surname", addr, bank, '')
