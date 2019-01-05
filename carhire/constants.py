@@ -4,6 +4,18 @@ used throughout the application
 """
 
 """
+Logging Service
+"""
+LOG_LEVEL_NONE = 0
+LOG_LEVEL_ERROR = 1
+LOG_LEVEL_WARN = 2
+LOG_LEVEL_DEBUG = 3
+LOG_LEVEL_TRACE = 4
+
+LOG_LEVEL_DEV = LOG_LEVEL_DEBUG
+LOG_LEVEL_PROD = LOG_LEVEL_TRACE
+
+"""
 Colours
 """
 WHITE = '#FEFEFE'

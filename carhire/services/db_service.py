@@ -5,7 +5,8 @@ Its main functions are to select records and return them as a list,
 or to update selected records
 """
 import sqlite3
-import carhire.db as db_consts
+import carhire.database as db_consts
+import carhire.services as services
 
 
 class DBService:
@@ -15,17 +16,17 @@ class DBService:
     db = None
     cursor = None
 
-    def execute_select(self, table_name, columns='*', condition=''):
+    def execute_select(self, table_name, condition='', columns='*'):
         """
         Executes a select query on the specified db table and returns
         the results as a list
 
         :param table_name: String of the name of the db table
-        :param columns: String of the columns, e.g. "col1" or multiple columns "col1, col2, col3"
         :param condition: String of the condition to appear in the WHERE statement, e.g. user_id='123'
+        :param columns: String of the columns, e.g. "col1" or multiple columns "col1, col2, col3"
         :return: List of returned records
         """
-        print("DB_SERVICE: Executing SELECT statement")
+        services.log_service.trace("DB_SERVICE", "Executing SELECT statement: table_name(%s), condition(%s), columns(%s)" % (table_name, condition, columns))
         self.create_db_connection()
         select_query = self.generate_select_query_from_arguments(columns, table_name, condition)
 
@@ -47,7 +48,7 @@ class DBService:
         :param condition: String of the condition to appear in the WHERE statement, e.g. user_id='123'
         :return: String of the complete SELECT statement
         """
-        print("DB_SERVICE: Generating SELECT statement")
+        services.log_service.debug("DB_SERVICE", "Generating SELECT statement")
         select_query = "SELECT %s" % columns
         from_query = " FROM %s" % table_name
         condition_query = " WHERE %s" % condition if condition else ''
@@ -57,7 +58,7 @@ class DBService:
         """
         Create connection to db
         """
-        print("DB_SERVICE: Creating db connection")
+        services.log_service.debug("DB_SERVICE", "Creating db connection")
         self.db = sqlite3.connect(db_consts.DB_NAME)
         self.cursor = self.db.cursor()
 
@@ -65,22 +66,22 @@ class DBService:
         """
         Close the cursor and db connection
         """
-        print("DB_SERVICE: Closing the db connection")
+        services.log_service.debug("DB_SERVICE", "Closing the db connection")
         self.cursor.close()
         self.db.close()
-        self.set_db_cursor_to_None()
+        self.set_db_cursor_to_none()
 
     def commit_changes(self):
         """
         Commit the changes to the db tables
         """
-        print("DB_SERVICE: Committing changes")
+        services.log_service.debug("DB_SERVICE", "Committing changes")
         self.db.commit()
 
     def set_db_cursor_to_none(self):
         """
         Sets the class variables to None
         """
-        print("DB_SERVICE: Setting cursor and db variables to None")
+        services.log_service.debug("DB_SERVICE", "Setting cursor and db variables to None")
         self.db = None
         self.cursor = None

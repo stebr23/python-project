@@ -2,6 +2,7 @@ import sqlite3
 import tkinter as tk
 import carhire.constants as vc
 import carhire.database as db_consts
+from carhire.services.db_service import DBService
 
 from tkinter import ttk
 from carhire.models.catalogue.catalogue import Catalogue
@@ -22,6 +23,8 @@ class VehicleFrame(tk.Frame):
     """
     def __init__(self, parent, vehicle_type, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
+
+        self.db_service = DBService()
 
         self.customer_id = tk.StringVar()
         self.parent = parent
@@ -94,38 +97,28 @@ class VehicleFrame(tk.Frame):
     def populate_catalogue(self):
         """
         Populates the Catalogue object with vehicles from the database
+        by calling the DBService execute_select class function
 
         The types of vehicles (Car, Bike or Van) are determined by the
         option the user chose form the main menu
         """
         print("VehicleView:  Populating catalogue")
-        db_table_name = self.set_db_table_name()
-        conn = sqlite3.connect(db_consts.DB_NAME)
-        c = conn.cursor()
-
-        select_query = self.get_select_query(db_table_name)
-        print("VehicleView:  Select query: %s " % select_query)
-
-        for row in c.execute(select_query):
-            self.vehicle_list.append(row)
-
-        c.close()
-        conn.close()
+        select_query_condition = self.get_select_query()
+        self.vehicle_list = self.db_service.execute_select(self.set_db_table_name(), select_query_condition)
         self.catalogue = Catalogue(self.vehicle_list)
 
-    def get_select_query(self, db_table_name):
+    def get_select_query(self):
         """
-        Returns a relevant SELECT query depending on whether the user
-        is viewing the vehicles that are available to rent or those
-        are currently being rented
+        Returns a relevant SELECT query condition depending on whether
+        the user is viewing the vehicles that are available to rent
+        or those are currently being rented
 
-        :param db_table_name: String of the name of the db table to query
-        :return: String of the whole SQL statement to retrieve the vehiclesfrom the db
+        :return: String of the condition section of the SQL statement to pass to the DBService
         """
         if self.parent.frame_name == vc.FRAME_VEHICLE:
-            return 'SELECT * FROM %s WHERE user_id IS NULL' % db_table_name
+            return "user_id IS NULL"
         elif self.parent.frame_name == vc.FRAME_RENTED:
-            return 'SELECT * FROM %s WHERE user_id IS NOT NULL' % db_table_name
+            return "user_id IS NOT NULL"
         return ''
 
     def create_vehicle_list_frame(self):
