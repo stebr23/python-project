@@ -1,5 +1,6 @@
 import tkinter as tk
 import carhire.constants as vc
+import carhire.services as services
 
 from tkinter import ttk
 from carhire.static import *
@@ -28,7 +29,7 @@ class MainMenu(tk.Frame):
         """
         Contains the functions executed to create the view
         """
-        print("MainMenu:  Creating view")
+        services.log_service.trace("MainMenu", "Creating view")
         self.parent.title("Car Hire - Main Menu")
         self.configure_grid()
         self.create_vehicle_buttons()
@@ -37,7 +38,7 @@ class MainMenu(tk.Frame):
         """
         Configures the rows and columns of the grid of the frame
         """
-        print("MainMenu:  Configuring GRID")
+        services.log_service.trace("MainMenu", "Configuring GRID")
         self.columnconfigure(0, weight=2)
         self.columnconfigure(1, weight=3)
         self.columnconfigure(2, weight=2)
@@ -49,7 +50,7 @@ class MainMenu(tk.Frame):
         """
         Creates buttons for each type of vehicle (Car, Bike and Van)
         """
-        print("MainMenu:  Creating Vehicle buttons")
+        services.log_service.trace("MainMenu", "Creating Vehicle buttons")
         self.create_car_button()
         self.create_bike_button()
         self.create_van_button()
@@ -61,7 +62,7 @@ class MainMenu(tk.Frame):
         An image is embedded in the button and the button is configured
         and displayed in the grid of the frame
         """
-        print("MainMenu:  Creating VAN button")
+        services.log_service.trace("MainMenu", "Creating VAN button")
         van_image = tk.PhotoImage(file=VAN_IMG)
         van_button = tk.Button(self, text=("  %s" % vc.VANS), font=("TkDefaultFont", 24), command=self.view_van_page,
                                image=van_image, compound="left", cursor="hand2", bg=vc.FG, fg=vc.BG)
@@ -75,7 +76,7 @@ class MainMenu(tk.Frame):
         An image is embedded in the button and the button is configured
         and displayed in the grid of the frame
         """
-        print("MainMenu:  Creating BIKE button")
+        services.log_service.trace("MainMenu", "Creating BIKE button")
         bike_image = tk.PhotoImage(file=BIKER_IMG)
         bike_button = tk.Button(self, text=("  %s" % vc.BIKES), font=("TkDefaultFont", 24), command=self.view_bike_page,
                                 image=bike_image, compound="left", cursor="hand2", bg=vc.FG, fg=vc.BG)
@@ -89,7 +90,7 @@ class MainMenu(tk.Frame):
         An image is embedded in the button and the button is configured
         and displayed in the grid of the frame
         """
-        print("MainMenu:  Creating CAR button")
+        services.log_service.trace("MainMenu", "Creating CAR button")
         car_image = tk.PhotoImage(file=CAR_IMG)
         car_button = tk.Button(self, text=("  %s" % vc.CARS), font=("TkDefaultFont", 24), command=self.view_car_page,
                                image=car_image, compound="left", cursor="hand2", bg=vc.FG, fg=vc.BG)
@@ -104,7 +105,7 @@ class MainMenu(tk.Frame):
         The label is then configured and placed on the grid of the
         frame
         """
-        print("MainMenu:  Setting title")
+        services.log_service.trace("MainMenu", "Setting title")
         title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600,
                                 foreground=vc.WHITE)
         title_label.configure(background=vc.BG, anchor="center")
@@ -114,19 +115,19 @@ class MainMenu(tk.Frame):
         """
         Clicking the button sends the user to the Car page
         """
-        print("MainMenu:  Navigating to Car Page")
-        self.parent.set_frame(vc.FRAME_VEHICLE, vc.CARS)
+        services.log_service.trace("MainMenu", "Navigating to Car Page")
+        self.parent._view_controller.set_frame(vc.FRAME_VEHICLE, vc.CARS)
 
     def view_bike_page(self):
         """
         Clicking the button sends the user to the Bike page
         """
-        print("MainMenu:  Navigating to Bike Page")
-        self.parent.set_frame(vc.FRAME_VEHICLE, vc.BIKES)
+        services.log_service.trace("MainMenu", "Navigating to Bike Page")
+        self.parent._view_controller.set_frame(vc.FRAME_VEHICLE, vc.BIKES)
 
     def view_van_page(self):
         """
         Clicking the button sends the user to the Van page
         """
-        print("MainMenu:  Navigating to Van Page")
-        self.parent.set_frame(vc.FRAME_VEHICLE, vc.VANS)
+        services.log_service.trace("MainMenu", "Navigating to Van Page")
+        self.parent._view_controller.set_frame(vc.FRAME_VEHICLE, vc.VANS)

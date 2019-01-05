@@ -1,63 +1,76 @@
-from carhire.models.vehicle.vehicle import Vehicle
+from carhire.models.vehicle.bike import Bike
+from carhire.models.vehicle.car import Car
+from carhire.models.vehicle.van import Van
+import carhire.constants as vc
 
 
 class Catalogue:
     """
     This class is used to create the Catalogue object
     """
-    def __init__(self, vehicles=None):
-        if vehicles is None:
-            vehicles = []
-        self.vehicles = vehicles
 
-    def rent_vehicle(self, vehicle, customer):
-        """
+    vehicle_list = []
+    _vehicle_type = ''
 
-        :param vehicle:
-        :param customer:
-        """
-        if vehicle in self.vehicles:
-            vehicle.user_id = customer.user_id
-            customer.vehicle_id = vehicle.vehicle_id
-            self.vehicles.remove(vehicle)
-            # Move vehicle to db currently rented table
+    def __init__(self, vehicle_type, vehicles_list=[]):
+        self._vehicle_type = vehicle_type
+        self.vehicle_list = vehicles_list
 
-    def return_vehicle(self, vehicle, customer):
-        """
+    def get_list(self):
+        return self.vehicle_list
 
-        :param vehicle:
-        :param customer:
+    def get_vehicle_by_id(self, vehicle_id):
         """
-        vehicle.remove_user_id()
-        customer.remove_vehicle_id()
-        self.vehicles.append(vehicle)
-        # Move vehicle to available table
+        Returns a vehicle from the catalogue when provided with a vehicle id
+        :param vehicle_id: String of the id relating to the vehicle
+        :return: Specific Vehicle object (Car, Bike, or Van) depending on the vehicle type set on initialising
+        """
+        for vehicle in self._vehicle_list:
+            if vehicle[0] == vehicle_id:
+                return self.return_vehicle(vehicle)
 
-    def get_entries(self):
+    def check_vehicle_for_matching_id(self, vehicle):
         """
+        Returns a vehicle which has matched the initial vehicle id
+        :param vehicle: Tuple containing details of a vehicle
+        :return: Specific Vehicle object (Car, Bike, or Van) depending on the vehicle type set on initialising
+        """
+        if self.vehicle_type == vc.CARS:
+            return self.return_car(vehicle)
+        elif self.vehicle_type == vc.BIKES:
+            return self.return_bike(vehicle)
+        elif self.vehicle_type == vc.VANS:
+            return self.return_van(vehicle)
 
-        :return:
+    @staticmethod
+    def return_van(vehicle):
         """
-        return self.vehicles
+        Returns a Van object from the details of the tuple found in the catalogue
+        :param vehicle: Tuple containing details of the van vehicle
+        :return: Van object instantiated with the details from the catalogue
+        """
+        van = Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
+                  vehicle[7], vehicle[8])
+        return van
 
-    def get_size(self):
+    @staticmethod
+    def return_bike(vehicle):
         """
+        Returns a Bike object from the details of the tuple found in the catalogue
+        :param vehicle: Tuple containing details of the bike vehicle
+        :return: Bike object instantiated with the details from the catalogue
+        """
+        bike = Bike(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
+                    vehicle[7], vehicle[8])
+        return bike
 
-        :return:
+    @staticmethod
+    def return_car(vehicle):
         """
-        return len(self.vehicles)
-
-    def get_vehicle(self, index):
+        Returns a Car object from the details of the tuple found in the catalogue
+        :param vehicle: Tuple containing details of the car vehicle
+        :return: Car object instantiated with the details from the catalogue
         """
-
-        :param index:
-        :return:
-        """
-        return Vehicle(self.vehicles[index][0],
-                       self.vehicles[index][1],
-                       self.vehicles[index][2],
-                       self.vehicles[index][3],
-                       self.vehicles[index][4],
-                       self.vehicles[index][5],
-                       self.vehicles[index][6],
-                       self.vehicles[index][7])
+        car = Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
+                  vehicle[7], vehicle[8], vehicle[9])
+        return car

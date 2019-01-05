@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5a6597e-9bda-4c0e-9cc0-1056d9390dbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/carhire/services/logging_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carhire/models/catalogue/catalogue_old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carhire/services/catalogue_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carhire/services/view_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view_copy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carhire/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carhire/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carhire/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carhire/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/database/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carhire/database/carhiredb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/database/carhiredb.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carhire/models/catalogue/catalogue.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/models/catalogue/catalogue.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carhire/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/services/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carhire/services/db_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/services/db_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carhire/views/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/views/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carhire/views/root_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/views/root_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +29,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/views/root_view.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="53" column="48" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+                <state relative-caret-position="693">
+                  <caret line="60" column="42" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="60" selection-end-column="42" />
                   <folding>
                     <element signature="e#0#20#0" expanded="true" />
                   </folding>
@@ -35,14 +38,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/views/main_menu.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="317">
+                  <caret line="117" column="48" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#0#20#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/app.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="100">
-                  <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-                  <folding>
-                    <element signature="e#33#71#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="84">
+                  <caret line="4" selection-start-line="4" selection-end-line="4" />
                 </state>
               </provider>
             </entry>
@@ -50,8 +62,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/services/__init__.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="189">
-                  <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+                <state relative-caret-position="210">
+                  <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
                   <folding>
                     <element signature="e#0#33#0" expanded="true" />
                   </folding>
@@ -59,11 +71,47 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-42">
-                  <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+                <state relative-caret-position="454">
+                  <caret line="237" column="66" selection-start-line="237" selection-start-column="66" selection-end-line="237" selection-end-column="66" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                    <element signature="e#1470#1739#0" />
+                    <element signature="e#1785#2056#0" />
+                    <element signature="e#2091#2567#0" />
+                    <element signature="e#2613#3184#0" />
+                    <element signature="e#3237#3515#0" />
+                    <element signature="e#4980#5472#0" />
+                    <element signature="e#5838#6485#0" />
+                    <element signature="e#5657#5935#0" />
+                    <element signature="e#6548#7287#0" />
+                    <element signature="e#14010#14194#0" />
+                    <element signature="e#13782#13998#0" />
+                    <element signature="e#14038#14253#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/views/vehicle/vehicle_view_copy.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="401">
+                  <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="117" selection-end-column="40" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/database/__init__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="105">
+                  <caret line="6" selection-start-line="6" selection-end-line="6" />
                 </state>
               </provider>
             </entry>
@@ -71,8 +119,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/constants.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="15" column="32" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="32" />
+                <state relative-caret-position="322">
+                  <caret line="66" selection-start-line="66" selection-end-line="66" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/models/catalogue/catalogue.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="220">
+                  <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#0#44#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -84,8 +144,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/services/db_service.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1764">
-                  <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+                <state relative-caret-position="86">
+                  <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
                   <folding>
                     <element signature="e#170#184#0" expanded="true" />
                   </folding>
@@ -93,13 +153,53 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/carhire/services/logging_service.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="273">
-                  <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
-                  <caret line="42" column="73" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
-                  <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+                <state relative-caret-position="357">
+                  <caret line="17" column="32" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/carhire/services/view_controller.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="451">
+                  <caret line="70" column="101" selection-start-line="70" selection-start-column="101" selection-end-line="70" selection-end-column="101" />
+                  <folding>
+                    <element signature="e#192#226#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/services/catalogue_service.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="73">
+                  <caret line="16" column="31" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#172#196#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/models/catalogue/catalogue_old.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="294">
+                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/carhire/models/vehicle/car.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="147">
+                  <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
                 </state>
               </provider>
             </entry>
@@ -132,6 +232,9 @@
       <find>self._vehicle_list</find>
       <find>,,</find>
       <find>,'',</find>
+      <find>vc.</find>
+      <find>print(&quot;MainMenu:</find>
+      <find>print(&quot;VehicleView:</find>
     </findStrings>
     <replaceStrings>
       <replace>vehicle.</replace>
@@ -144,6 +247,9 @@
       <replace>,'',</replace>
       <replace>,NULL,</replace>
       <replace>self.vehicle_list</replace>
+      <replace>consts.</replace>
+      <replace>services.log_service.trace(&quot;MainMenu&quot;, &quot;</replace>
+      <replace>services.log_service.trace(&quot;VehicleView&quot;, &quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -152,10 +258,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/layout.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/carhire/templates/layout.html" />
-        <option value="$PROJECT_DIR$/carhire/static/style.css" />
         <option value="$PROJECT_DIR$/carhire/templates/index.html" />
         <option value="$PROJECT_DIR$/test/object_test.py" />
         <option value="$PROJECT_DIR$/test/catalogue_test.py" />
@@ -184,25 +286,29 @@
         <option value="$PROJECT_DIR$/carhire/views/vehicle/individual_vehicle.py" />
         <option value="$PROJECT_DIR$/carhire/models/vehicle/car.py" />
         <option value="$PROJECT_DIR$/carhire/models/user/user.py" />
-        <option value="$PROJECT_DIR$/carhire/models/catalogue/catalogue.py" />
         <option value="$PROJECT_DIR$/carhire/models/vehicle/bike.py" />
         <option value="$PROJECT_DIR$/carhire/views/view_constants.py" />
         <option value="$PROJECT_DIR$/carhire/models/user/admin.py" />
         <option value="$PROJECT_DIR$/carhire/models/user/customer.py" />
         <option value="$PROJECT_DIR$/carhire/database/create_db.py" />
-        <option value="$PROJECT_DIR$/carhire/views/root_view.py" />
-        <option value="$PROJECT_DIR$/carhire/views/main_menu.py" />
         <option value="$PROJECT_DIR$/carhire/models/vehicle/van.py" />
         <option value="$PROJECT_DIR$/carhire/models/vehicle/vehicle.py" />
         <option value="$PROJECT_DIR$/carhire/data/__init__.py" />
         <option value="$PROJECT_DIR$/carhire/database/__init__.py" />
         <option value="$PROJECT_DIR$/carhire/services/car_hire_services.py" />
-        <option value="$PROJECT_DIR$/carhire/services/__init__.py" />
-        <option value="$PROJECT_DIR$/carhire/services/db_service.py" />
-        <option value="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py" />
         <option value="$PROJECT_DIR$/carhire/constants.py" />
         <option value="$PROJECT_DIR$/carhire/services/logging_service.py" />
+        <option value="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view_copy.py" />
+        <option value="$PROJECT_DIR$/carhire/models/catalogue/catalogue_copy.py" />
         <option value="$PROJECT_DIR$/carhire/app.py" />
+        <option value="$PROJECT_DIR$/carhire/views/root_view.py" />
+        <option value="$PROJECT_DIR$/carhire/views/main_menu.py" />
+        <option value="$PROJECT_DIR$/carhire/services/db_service.py" />
+        <option value="$PROJECT_DIR$/carhire/models/catalogue/catalogue.py" />
+        <option value="$PROJECT_DIR$/carhire/services/__init__.py" />
+        <option value="$PROJECT_DIR$/carhire/services/catalogue_service.py" />
+        <option value="$PROJECT_DIR$/carhire/services/view_controller.py" />
+        <option value="$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py" />
       </list>
     </option>
   </component>
@@ -243,18 +349,6 @@
             <path>
               <item name="CarHire" type="b2602c69:ProjectViewProjectNode" />
               <item name="CarHire" type="462c0819:PsiDirectoryNode" />
-              <item name="carhire" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CarHire" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CarHire" type="462c0819:PsiDirectoryNode" />
-              <item name="carhire" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CarHire" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CarHire" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -277,6 +371,10 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Home\PycharmProjects\CarHire\carhire\models\catalogue" />
+      <recent name="C:\Users\Home\PycharmProjects\CarHire\carhire\views\vehicle" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Home\PycharmProjects\CarHire\carhire\data" />
       <recent name="C:\Users\Home\PycharmProjects\CarHire\carhire" />
@@ -480,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1546706657008</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Created Logging Service">
+      <created>1546710901142</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1546710901142</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -528,12 +633,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="1" visible="true" weight="0.42824858" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32542372" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49761525" visible="true" weight="0.39096045" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49761525" visible="true" weight="0.21129943" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3986014" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49920508" weight="0.32867134" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49920508" weight="0.32768363" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32768363" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007949" side_tool="true" weight="0.32867134" />
       <window_info anchor="bottom" id="Python Console" order="11" />
@@ -576,7 +681,8 @@
     <MESSAGE value="Docstrings" />
     <MESSAGE value="Docstrings Finished" />
     <MESSAGE value="Created DB Service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created DB Service" />
+    <MESSAGE value="Created Logging Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Logging Service" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/carhire/static/style.css">
@@ -700,37 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/models/catalogue/catalogue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/models/vehicle/car.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/models/vehicle/bike.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/views/main_menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2604">
-          <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_catalogue.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -791,16 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/database/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#6#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/carhire/data/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -815,65 +880,153 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py">
+    <entry file="file://$PROJECT_DIR$/carhire/models/vehicle/bike.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        <state relative-caret-position="147">
+          <caret line="7" column="75" lean-forward="true" selection-start-line="7" selection-start-column="75" selection-end-line="7" selection-end-column="75" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/services/__init__.py">
+    <entry file="file://$PROJECT_DIR$/carhire/models/vehicle/car.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/services/db_service.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1764">
-          <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
-          <folding>
-            <element signature="e#170#184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="147">
+          <caret line="7" column="98" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/carhire/services/logging_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="22" column="74" selection-start-line="22" selection-start-column="74" selection-end-line="22" selection-end-column="74" />
-          <caret line="42" column="73" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
-          <caret line="52" column="75" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
+        <state relative-caret-position="357">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/carhire/views/root_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="53" column="48" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+        <state relative-caret-position="693">
+          <caret line="60" column="42" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="60" selection-end-column="42" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/carhire/app.py">
+    <entry file="file://$PROJECT_DIR$/carhire/views/main_menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        <state relative-caret-position="317">
+          <caret line="117" column="48" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="48" />
           <folding>
-            <element signature="e#33#71#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/models/catalogue/catalogue_old.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/services/db_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#170#184#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/models/catalogue/catalogue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/views/vehicle/vehicle_view_copy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="117" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/database/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/services/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/services/catalogue_service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="31" />
+          <folding>
+            <element signature="e#172#196#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/services/view_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="70" column="101" selection-start-line="70" selection-start-column="101" selection-end-line="70" selection-end-column="101" />
+          <folding>
+            <element signature="e#192#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carhire/views/vehicle/vehicle_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="237" column="66" selection-start-line="237" selection-start-column="66" selection-end-line="237" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#1470#1739#0" />
+            <element signature="e#1785#2056#0" />
+            <element signature="e#2091#2567#0" />
+            <element signature="e#2613#3184#0" />
+            <element signature="e#3237#3515#0" />
+            <element signature="e#4980#5472#0" />
+            <element signature="e#5838#6485#0" />
+            <element signature="e#5657#5935#0" />
+            <element signature="e#6548#7287#0" />
+            <element signature="e#14010#14194#0" />
+            <element signature="e#13782#13998#0" />
+            <element signature="e#14038#14253#0" />
           </folding>
         </state>
       </provider>

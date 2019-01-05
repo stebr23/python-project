@@ -13,8 +13,8 @@ class DBService:
     """
     DBService class to manage db executions on the carhire database
     """
-    db = None
-    cursor = None
+    _db = None
+    _cursor = None
 
     def execute_select(self, table_name, condition='', columns='*'):
         """
@@ -31,8 +31,10 @@ class DBService:
         select_query = self.generate_select_query_from_arguments(columns, table_name, condition)
 
         records = []
-        for row in self.cursor.execute(select_query):
+        for row in self._cursor.execute(select_query):
             records.append(row)
+
+        services.log_service.trace("DB_SERVICE", "Returned %s rows" % (len(records)))
 
         self.close_db_connection()
         return records
@@ -59,16 +61,16 @@ class DBService:
         Create connection to db
         """
         services.log_service.debug("DB_SERVICE", "Creating db connection")
-        self.db = sqlite3.connect(db_consts.DB_NAME)
-        self.cursor = self.db.cursor()
+        self._db = sqlite3.connect(db_consts.DB_NAME)
+        self._cursor = self._db.cursor()
 
     def close_db_connection(self):
         """
         Close the cursor and db connection
         """
         services.log_service.debug("DB_SERVICE", "Closing the db connection")
-        self.cursor.close()
-        self.db.close()
+        self._cursor.close()
+        self._db.close()
         self.set_db_cursor_to_none()
 
     def commit_changes(self):
@@ -76,12 +78,12 @@ class DBService:
         Commit the changes to the db tables
         """
         services.log_service.debug("DB_SERVICE", "Committing changes")
-        self.db.commit()
+        self._db.commit()
 
     def set_db_cursor_to_none(self):
         """
         Sets the class variables to None
         """
         services.log_service.debug("DB_SERVICE", "Setting cursor and db variables to None")
-        self.db = None
-        self.cursor = None
+        self._db = None
+        self._cursor = None
