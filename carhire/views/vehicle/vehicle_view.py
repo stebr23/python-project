@@ -60,6 +60,16 @@ class VehicleFrame(tk.Frame):
         self.configure(background=vc.BG)
         self.columnconfigure(1, weight=1)
 
+    def set_title(self):
+        """
+        Sets the title of the frame so the user knows which frame they are viewing
+        """
+        print("VehicleView:  Setting title")
+        title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600,
+                                foreground=vc.WHITE)
+        title_label.configure(background=vc.BG, anchor="center")
+        title_label.grid(row=0, column=1, sticky=(tk.E + tk.W), pady=(30, 80))
+
     def set_main_menu_button(self):
         """
         Creates a button widget for the user to navigate back to the
@@ -71,16 +81,6 @@ class VehicleFrame(tk.Frame):
                                      image=main_menu_image, compound="right", background=vc.BG, fg=vc.FG)
         main_menu_button.image = main_menu_image
         main_menu_button.grid(row=0, column=0, sticky=(tk.E + tk.W))
-
-    def set_title(self):
-        """
-        Sets the title of the frame so the user knows which frame they are viewing
-        """
-        print("VehicleView:  Setting title")
-        title_label = ttk.Label(self, textvariable=self.title_string, font=("TkDefaultFont", 64), wraplength=600,
-                                foreground=vc.WHITE)
-        title_label.configure(background=vc.BG, anchor="center")
-        title_label.grid(row=0, column=1, sticky=(tk.E + tk.W), pady=(30, 80))
 
     def create_vehicle_list_display(self):
         """
