@@ -27,11 +27,19 @@ class RentalService:
         condition = "vehicle_id='%s'" % vehicle_id
         services.db_service.execute_update(vehicle_type, values, condition)
 
-    def return_vehicle(self, vehicle_type, vehicle_id):
+    @staticmethod
+    def return_vehicle(vehicle_type, vehicle_id, user_id):
         """
         Assigns the vehicle a user_id and assigns a customer a vehicle_id,
         updating the values in the database via the DB Service
+        :param user_id: String of the users's id to remove
         :param vehicle_type: vehicle_type: String of the type of vehicle to return
         :param vehicle_id: String of the vehicle's ID
         """
-        pass
+        services.log_service.trace("RentalService",
+                                   "Updating db vehicle table with type: %s, vehicle id: %s and customer_id: %s" % (
+                                    vehicle_type, vehicle_id, user_id))
+        values = "user_id=NULL"
+        condition = "vehicle_id='%s'" % vehicle_id
+        services.db_service.execute_update(vehicle_type, values, condition)
+

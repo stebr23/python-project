@@ -145,6 +145,9 @@ class VehicleFrame(tk.Frame):
             currently_rented_button = tk.Button(self, text="View Available %s" % self.vehicle_type,
                                                 command=self.show_available)
             currently_rented_button.grid(row=5, column=1, pady=(10, 0))
+            return_vehicle_button = tk.Button(self, text="Return Selected %s" % self.vehicle_type[0:-1],
+                                              command=self.return_selected)
+            return_vehicle_button.grid(row=6, column=1, pady=(10, 0))
 
     def add_vehicles_from_catalogue_to_listbox(self):
         """
@@ -227,6 +230,28 @@ class VehicleFrame(tk.Frame):
                 self.view_controller.rent_vehicle(self.vehicle_type, vehicle_id, self.customer_id.get())
                 self.list_listbox.delete(vehicle_index)
                 self.customer_id.set('')
+
+    def return_selected(self):
+        """
+        Takes the selected vehicle and removes the user_id
+        and removes the vehicle_id from the user
+
+        The vehicle is removed from the catalogue and the listbox
+
+        The database is updated to clear the user id on the specific vehicle
+        table for the selected vehicle whilst removing the vehicle_id from
+        the user
+        """
+        services.log_service.trace("VehicleView", "Returning selected vehicle...")
+        if self.list_listbox.curselection():
+            vehicle_index = self.list_listbox.curselection()[0]
+            vehicle_to_rent = self.list_listbox.get(vehicle_index)
+            vehicle_id = vehicle_to_rent[0:4]
+            customer_id = vehicle_to_rent.split()[-1]
+
+            services.log_service.debug("VehicleView", "vehicle: %s, customer_id: %s" % (vehicle_id, customer_id))
+            self.view_controller.return_vehicle(self.vehicle_type, vehicle_id, customer_id)
+            self.list_listbox.delete(vehicle_index)
 
     @staticmethod
     def get_customer(customer_id):

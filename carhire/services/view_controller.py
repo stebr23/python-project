@@ -83,11 +83,12 @@ class ViewController:
         services.rental_service.rent_vehicle(vehicle_type, vehicle_id, user_id)
 
     @staticmethod
-    def return_vehicle(vehicle_type, vehicle_id):
+    def return_vehicle(vehicle_type, vehicle_id, user_id):
         """
         Removes the vehicle_id from the user and removes the customer_id from the vehicle
+        :param user_id: String of the ID of the user to be removed
         :param vehicle_type: vehicle_type: String of the type of vehicle to return
         :param vehicle_id: String of the vehicle's ID
         """
-        services.log_service.trace("ViewController", "Renting vehicle with type: %s, vehicle_id: %s" % (vehicle_type, vehicle_id))
-        services.rental_service.return_vehicle(vehicle_type, vehicle_id)
+        services.log_service.trace("ViewController", "Renting vehicle with type: %s, vehicle_id: %s, user_id: %s" % (vehicle_type, vehicle_id, user_id))
+        services.rental_service.return_vehicle(vehicle_type, vehicle_id, user_id)
