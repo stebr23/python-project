@@ -105,6 +105,7 @@ def update_null_values():
     correctly when queried in the code
     """
     cursor.execute("UPDATE CARS SET user_id=NULL where user_id='NULL'")
+    cursor.execute("UPDATE BIKES SET user_id=NULL where user_id='NULL'")
 
 
 def commit_and_close_db_connection():
