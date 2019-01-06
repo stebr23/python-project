@@ -29,21 +29,21 @@ class Catalogue:
         :param vehicle_id: String of the id relating to the vehicle
         :return: Specific Vehicle object (Car, Bike, or Van) depending on the vehicle type set on initialising
         """
-        for vehicle in self._vehicle_list:
-            if vehicle[0] == vehicle_id:
+        for vehicle in self.vehicle_list:
+            if vehicle.vehicle_id == vehicle_id:
                 return self.return_vehicle(vehicle)
 
-    def check_vehicle_for_matching_id(self, vehicle):
+    def return_vehicle(self, vehicle):
         """
         Returns a vehicle which has matched the initial vehicle id
         :param vehicle: Tuple containing details of a vehicle
         :return: Specific Vehicle object (Car, Bike, or Van) depending on the vehicle type set on initialising
         """
-        if self.vehicle_type == vc.CARS:
+        if self._vehicle_type == vc.CARS:
             return self.return_car(vehicle)
-        elif self.vehicle_type == vc.BIKES:
+        elif self._vehicle_type == vc.BIKES:
             return self.return_bike(vehicle)
-        elif self.vehicle_type == vc.VANS:
+        elif self._vehicle_type == vc.VANS:
             return self.return_van(vehicle)
 
     @staticmethod
@@ -53,8 +53,8 @@ class Catalogue:
         :param vehicle: Tuple containing details of the van vehicle
         :return: Van object instantiated with the details from the catalogue
         """
-        van = Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
-                  vehicle[7], vehicle[8])
+        van = Van(vehicle.vehicle_id, vehicle.make, vehicle.model, vehicle.wheels, vehicle.colour, vehicle.doors,
+                  vehicle.passengers, vehicle.user_id, vehicle.storage_space)
         return van
 
     @staticmethod
@@ -64,8 +64,8 @@ class Catalogue:
         :param vehicle: Tuple containing details of the bike vehicle
         :return: Bike object instantiated with the details from the catalogue
         """
-        bike = Bike(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
-                    vehicle[7], vehicle[8])
+        bike = Bike(vehicle.vehicle_id, vehicle.make, vehicle.model, vehicle.wheels, vehicle.colour, vehicle.doors,
+                    vehicle.passengers, vehicle.user_id, vehicle.storage)
         return bike
 
     @staticmethod
@@ -75,6 +75,8 @@ class Catalogue:
         :param vehicle: Tuple containing details of the car vehicle
         :return: Car object instantiated with the details from the catalogue
         """
-        car = Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
-                  vehicle[7], vehicle[8], vehicle[9])
+        # car = Car(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5], vehicle[6],
+        #           vehicle[7], vehicle[8], vehicle[9])
+        car = Car(vehicle.vehicle_id, vehicle.make, vehicle.model, vehicle.wheels, vehicle.colour, vehicle.doors,
+                  vehicle.passengers, vehicle.user_id, vehicle.bags, vehicle.car_type)
         return car

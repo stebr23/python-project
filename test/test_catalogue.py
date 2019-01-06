@@ -1,52 +1,42 @@
 import unittest
-import test.variables as tv
 
 from carhire.models.catalogue.catalogue import Catalogue
+from carhire.models.vehicle.car import Car
 
 
 class TestCatalogue(unittest.TestCase):
+    """
+    Testing the Catalogue class
+    """
 
     def test_create_catalogue_class(self):
-        catalogue_size = 5
-        list_of_vehicles = tv.get_list_of_vehicles(catalogue_size)
-        c1 = Catalogue(list_of_vehicles)
+        """
+        Test the Catalogue class exists and an object can be instantiated
+        """
+        vehicle_type = 'CAR'
+        c1 = Catalogue(vehicle_type)
 
-        self.assertEqual(len(c1.vehicles), catalogue_size)
+        self.assertEqual(c1.__class__, Catalogue)
 
-    def test_rent_from_catalogue_removes_vehicle(self):
-        vehicle = tv.get_vehicle()
-        customer = tv.get_customer(tv.vehicle_id)
-        catalogue = Catalogue([vehicle])
+    def test_get_vehicle_list(self):
+        vehicle_type = 'CAR'
+        vehicle_list = ["Car1", "Car2"]
+        catalogue = Catalogue(vehicle_type, vehicle_list)
 
-        self.assertEqual(1, catalogue.get_size())
+        self.assertEqual(catalogue.get_list(), vehicle_list)
 
-        catalogue.rent_vehicle(vehicle, customer)
-        self.assertEqual(0, catalogue.get_size())
+    def test_get_vehicle_by_id(self):
+        vehicle_type = 'Cars'
+        car1 = Car("123", "Ford", "Focus", 4, "Blue", 3, 5, "abc", 4, "Sedan")
+        car2 = Car("456", "Ford", "Focus", 4, "Blue", 3, 5, "abc", 4, "Sedan")
+        car3 = Car("789", "Ford", "Focus", 4, "Blue", 3, 5, "abc", 4, "Sedan")
+        car_list = [car1, car2, car3]
+        catalogue = Catalogue(vehicle_type, car_list)
 
-    def test_rent_from_catalogue_adds_user_id_to_vehicle(self):
-        vehicle = tv.get_vehicle()
-        customer = tv.get_customer()
-        catalogue = Catalogue([vehicle])
+        car4 = catalogue.get_vehicle_by_id("123")
+        car5 = catalogue.get_vehicle_by_id("456")
+        car6 = catalogue.get_vehicle_by_id("789")
 
-        catalogue.rent_vehicle(vehicle, customer)
-
-        self.assertEqual(vehicle.user_id, customer.user_id)
-
-    def test_rent_from_catalogue_adds_vehicle_id_to_customer(self):
-        vehicle = tv.get_vehicle()
-        customer = tv.get_customer()
-        catalogue = Catalogue([vehicle])
-
-        catalogue.rent_vehicle(vehicle, customer)
-
-        self.assertEqual(customer.vehicle_id, vehicle.vehicle_id)
-
-    def test_return_to_catalogue_adds_vehicle(self):
-        vehicle = tv.get_vehicle()
-        customer = tv.get_customer()
-        catalogue = Catalogue([])
-
-        catalogue.return_vehicle(vehicle, customer)
-
-        self.assertEqual(1, catalogue.get_size())
-        self.assertEqual(vehicle, catalogue.vehicles[0])
+        self.assertEqual(car1.vehicle_id, car4.vehicle_id)
+        self.assertEqual(car2.vehicle_id, car5.vehicle_id)
+        self.assertEqual(car3.vehicle_id, car6.vehicle_id)
