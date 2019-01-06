@@ -52,13 +52,24 @@ def create_car_table():
 
 def create_bike_table():
     """
-    Unimplemented
-    TODO:
-      - Create bike.csv file
-      - Implement
+    Create the bike table on the database from the bike.csv data file
+    located in the current directory.
     """
-    pass
+    drop_table("bikes")
 
+    cursor.execute('''
+    CREATE TABLE bikes(vehicle_id TEXT, make TEXT, model TEXT, wheels INTEGER, colour TEXT,
+                       doors INTEGER, passengers INTEGER, user_id TEXT, storage TEXT)
+''')
+    with open(db_consts.BIKE_DATA_FILE) as bike_data_file:
+        print("CREATE_DB Opened csv")
+        reader = csv.DictReader(car_data_file)
+        csv_data = [(i['vehicle_id'], i['make'], i['model'], i['wheels'], i['colour'], i['doors'], i['passengers'],
+                     i['user_id'], i['storage']) for i in reader]
+
+    cursor.executemany(
+        "INSERT INTO bikes (vehicle_id, make, model, wheels, colour, doors, passengers, user_id, storage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        csv_data)
 
 def create_van_table():
     """
