@@ -3,14 +3,12 @@ The Rental Service is involved with handling renting and returning vehicles
 """
 import carhire.services as services
 
+
 class RentalService:
     """
     This class will provide the rent and return functionality for the vehicles
     and customers in the database
     """
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def rent_vehicle(vehicle_type, vehicle_id, user_id):

@@ -13,6 +13,10 @@ from carhire.views.vehicle.vehicle_view import VehicleFrame
 
 
 class ViewController:
+    """
+    All view requests for data and processing are called from this
+    service and forwarded onto the other services contained within the logic layer.
+    """
 
     _root_frame = None
     current_frame = ''

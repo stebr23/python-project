@@ -54,7 +54,7 @@ class Catalogue:
         :return: Van object instantiated with the details from the catalogue
         """
         van = Van(vehicle[0], vehicle[1], vehicle[2], vehicle[3], vehicle[4], vehicle[5],
-                    vehicle[6], vehicle[7], vehicle[8])
+                  vehicle[6], vehicle[7], vehicle[8])
         return van
 
     @staticmethod

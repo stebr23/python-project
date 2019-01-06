@@ -3,7 +3,6 @@ Running this file creates the database as well as the Cars table
 utilising the car.csv file in the current directory
 
 TODO:
-  - Add Bike and Van tables
   - Refactor table creation functionality
   - Migrate to a permanent db solution in the future
 """
@@ -71,14 +70,27 @@ def create_bike_table():
         "INSERT INTO bikes (vehicle_id, make, model, wheels, colour, doors, passengers, user_id, storage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
         csv_data)
 
+
 def create_van_table():
     """
-    Unimplemented
-    TODO:
-      - Create van.csv file
-      - Implement
+    Create the van table on the database from the van.csv data file
+    located in the current directory.
     """
-    pass
+    drop_table("vans")
+
+    cursor.execute('''
+        CREATE TABLE vans (vehicle_id TEXT, make TEXT, model TEXT, wheels INTEGER, colour TEXT,
+                           doors INTEGER, passengers INTEGER, user_id TEXT, storage_space TEXT)
+    ''')
+    with open(db_consts.VAN_DATA_FILE) as van_data_file:
+        print("CREATE_DB Opened csv")
+        reader = csv.DictReader(van_data_file)
+        csv_data = [(i['vehicle_id'], i['make'], i['model'], i['wheels'], i['colour'], i['doors'], i['passengers'],
+                     i['user_id'], i['storage_space']) for i in reader]
+
+    cursor.executemany(
+        "INSERT INTO vans (vehicle_id, make, model, wheels, colour, doors, passengers, user_id, storage_space) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        csv_data)
 
 
 def create_tables():
@@ -106,6 +118,7 @@ def update_null_values():
     """
     cursor.execute("UPDATE CARS SET user_id=NULL where user_id='NULL'")
     cursor.execute("UPDATE BIKES SET user_id=NULL where user_id='NULL'")
+    cursor.execute("UPDATE VANS SET user_id=NULL where user_id='NULL'")
 
 
 def commit_and_close_db_connection():

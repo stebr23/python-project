@@ -76,7 +76,6 @@ class DBService:
         where_query = " WHERE %s" % condition
         return update_query + set_query + where_query
 
-
     @staticmethod
     def generate_select_query_from_arguments(columns, table_name, condition):
         """
@@ -92,7 +91,9 @@ class DBService:
         select_query = "SELECT %s" % columns
         from_query = " FROM %s" % table_name
         condition_query = " WHERE %s" % condition if condition else ''
-        return select_query + from_query + condition_query
+        full_query = select_query + from_query + condition_query
+        services.log_service.debug("DB_SERVICE", "Returning: %s" % full_query)
+        return full_query
 
     def create_db_connection(self):
         """
