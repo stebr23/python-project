@@ -63,7 +63,7 @@ def create_bike_table():
 ''')
     with open(db_consts.BIKE_DATA_FILE) as bike_data_file:
         print("CREATE_DB Opened csv")
-        reader = csv.DictReader(car_data_file)
+        reader = csv.DictReader(bike_data_file)
         csv_data = [(i['vehicle_id'], i['make'], i['model'], i['wheels'], i['colour'], i['doors'], i['passengers'],
                      i['user_id'], i['storage']) for i in reader]
 

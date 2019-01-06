@@ -161,12 +161,15 @@ class VehicleFrame(tk.Frame):
 
         for vehicle in self.catalogue.get_list():
             services.log_service.debug("VehicleView", "Vehicle: %s" % vehicle[0])
-            if self.vehicle_type == vc.CARS:
-                self.vehicle = self.catalogue.return_car(vehicle)
-            elif self.vehicle_type == vc.BIKES:
-                self.vehicle = self.catalogue.return_bike(vehicle)
-            elif self.vehicle_type == vc.VANS:
-                self.vehicle = self.catalogue.return_van(vehicle)
+            services.log_service.debug("VehicleView", "Vehicle Type is: %s" % self.vehicle_type)
+            # if self.vehicle_type == vc.CARS:
+            #     self.vehicle = self.catalogue.return_car(vehicle)
+            # elif self.vehicle_type == vc.BIKES:
+            #     self.vehicle = self.catalogue.return_bike(vehicle)
+            # elif self.vehicle_type == vc.VANS:
+            #     self.vehicle = self.catalogue.return_van(vehicle)
+
+            self.vehicle = self.catalogue.return_vehicle(vehicle)
 
             vehicle_details = self.vehicle.generate_vehicle_details_string()
             self.list_listbox.insert(tk.END, vehicle_details)

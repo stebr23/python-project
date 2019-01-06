@@ -19,7 +19,7 @@ class CatalogueService:
         Populates available vehicle (where user_id is null)
         catalogue from the db table provided by the param vehicle type
         TODO:
-          - Refactor ?
+          - Refactor
 
         :param vehicle_type: String of the vehicle type that matches a db table (cars, bikes or vans)
         """
